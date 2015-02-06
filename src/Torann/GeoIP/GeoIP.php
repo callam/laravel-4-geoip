@@ -141,7 +141,7 @@ class GeoIP {
 		if( $this->checkIp( $ip ) ) {
 
 			// Call default service
-			$service = 'locate_'.$this->config->get('geoip::service');
+			$service = 'locate_'.config('geoip.service');
 
 			return $this->$service($ip);
 		}
@@ -157,7 +157,7 @@ class GeoIP {
 	 */
 	private function locate_maxmind( $ip )
 	{
-		$settings = $this->config->get('geoip::maxmind');
+		$settings = config('geoip.maxmind');
 
 		if($settings['type'] === 'web_service') {
 			$maxmind = new Client($settings['user_id'], $settings['license_key']);
